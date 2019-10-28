@@ -17,10 +17,14 @@
 .cell {
   width: 7vw;
   height: 7vw;
-  background: red;
-  border: 2px solid black;
+  background: white;
+  border: 1px solid black;
 }
 
 .checking, .turned {
   background: blue;
+}
+
+img {
+  width: 100%;
 }

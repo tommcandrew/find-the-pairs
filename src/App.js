@@ -1,5 +1,13 @@
 import React from 'react';
 import './App.css';
+import pizza from './pizza.jpg'
+import apple from './apple.png'
+import coffee from './coffee.png'
+import chicken from './chicken.png'
+import spaghetti from './spaghetti.png'
+import juice from './juice.png'
+import cheese from './cheese.png'
+import cookies from './cookies.png'
 
 class App extends React.Component {
 
@@ -47,10 +55,10 @@ class App extends React.Component {
 
       <div className="grid-wrapper" onClick={this.handleClick}>
 
-        <div className="row"><div className="cell apple"></div><div className="cell cake"></div><div className="cell pizza"></div><div className="cell coffee"></div></div>
-        <div className="row"><div className="cell cake"></div><div className="cell cheese"></div><div className="cell chicken"></div><div className="cell cheese"></div></div>
-        <div className="row"><div className="cell coffee"></div><div className="cell spaghetti"></div><div className="cell apple"></div><div className="cell orange-juice"></div></div>
-        <div className="row"><div className="cell chicken"></div><div className="cell orange-juice"></div><div className="cell spaghetti"></div><div className="cell pizza"></div></div>
+        <div className="row"><div className="cell apple"><img src={apple} /></div><div className="cell cookies"><img src={cookies} /></div><div className="cell pizza"><img src={pizza} /></div><div className="cell coffee"><img src={coffee} /></div></div>
+        <div className="row"><div className="cell cookies"><img src={cookies} /></div><div className="cell cheese"><img src={cheese} /></div><div className="cell chicken"><img src={chicken} /></div><div className="cell cheese"><img src={cheese} /></div></div>
+        <div className="row"><div className="cell coffee"><img src={coffee} /></div><div className="cell spaghetti"><img src={spaghetti} /></div><div className="cell apple"><img src={apple} /></div><div className="cell orange-juice"><img src={juice} /></div></div>
+        <div className="row"><div className="cell chicken"><img src={chicken} /></div><div className="cell orange-juice"><img src={juice} /></div><div className="cell spaghetti"><img src={spaghetti} /></div><div className="cell pizza"><img src={pizza} /></div></div>
 
 
       </div>
