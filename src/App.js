@@ -1,25 +1,41 @@
 import React from 'react';
+import Card from './Card'
 import './App.css';
-import pizza from './pizza.png'
-import apple from './apple.png'
-import coffee from './coffee.png'
-import chicken from './chicken.png'
-import spaghetti from './spaghetti.png'
-import juice from './juice.png'
-import cheese from './cheese.png'
-import cookies from './cookies.png'
+
+const foods = ['apple', 'cookies', 'pizza', 'coffee', 'cookies', 'cheese', 'chicken', 'cheese', 'coffee', 'spaghetti', 'apple', 'juice', 'chicken', 'juice', 'spaghetti', 'pizza']
+const mixedFoods = []
 
 class App extends React.Component {
 
   state = {
-    prevCard: ''
+    prevCard: '',
+    mixedFoods: [],
+    foods1: [],
+    foods2: [],
+    foods3: [],
+    foods4: []
   }
 
   componentDidMount() {
-    const cards = document.getElementsByClassName('card')
-    for (let i = 0; i < cards.length; i++) {
-      cards[i].addEventListener('click', this.handleClick)
+    this.randomiseFoods()
+    this.setState(() => ({mixedFoods}))
+
+    const foods1 = mixedFoods.slice(0, 4)
+    const foods2 = mixedFoods.slice(4, 8)
+    const foods3 = mixedFoods.slice(8, 12)
+    const foods4 = mixedFoods.slice(12)
+
+    this.setState(() => ({foods1, foods2, foods3, foods4}))
+  }
+
+  randomiseFoods = () => {
+    if (foods.length === 0) {
+      return
     }
+    const randomNum = Math.floor(Math.random() * foods.length)
+    const randomFood = foods.splice(randomNum, 1)[0]
+    mixedFoods.push(randomFood)
+    this.randomiseFoods()
   }
 
   handleClick = (e) => {
@@ -66,181 +82,10 @@ class App extends React.Component {
 
       <div className="grid-wrapper">
 
-        <div className="row">
-
-          <div className="card apple">
-            <div className="card-inner">
-              <div className="card-front">
-              </div>
-              <div className="card-back">
-                <img src={apple} />
-              </div>
-            </div>
-          </div>
-
-          <div className="card cookies">
-            <div className="card-inner">
-              <div className="card-front">
-              </div>
-              <div className="card-back">
-                <img src={cookies} />
-              </div>
-            </div>
-          </div>
-
-          <div className="card pizza">
-            <div className="card-inner">
-              <div className="card-front">
-              </div>
-              <div className="card-back">
-                <img src={pizza} />
-              </div>
-            </div>
-          </div>
-
-          <div className="card coffee">
-            <div className="card-inner">
-              <div className="card-front">
-              </div>
-              <div className="card-back">
-                <img src={coffee} />
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <div className="row">
-
-          <div className="card cookies">
-            <div className="card-inner">
-              <div className="card-front">
-              </div>
-              <div className="card-back">
-                <img src={cookies} />
-              </div>
-            </div>
-          </div>
-
-          <div className="card cheese">
-            <div className="card-inner">
-              <div className="card-front">
-              </div>
-              <div className="card-back">
-                <img src={cheese} />
-              </div>
-            </div>
-          </div>
-
-          <div className="card chicken">
-            <div className="card-inner">
-              <div className="card-front">
-              </div>
-              <div className="card-back">
-                <img src={chicken} />
-              </div>
-            </div>
-          </div>
-
-          <div className="card cheese">
-            <div className="card-inner">
-              <div className="card-front">
-              </div>
-              <div className="card-back">
-                <img src={cheese} />
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <div className="row">
-
-          <div className="card coffee">
-            <div className="card-inner">
-              <div className="card-front">
-              </div>
-              <div className="card-back">
-                <img src={coffee} />
-              </div>
-            </div>
-          </div>
-
-          <div className="card spaghetti">
-            <div className="card-inner">
-              <div className="card-front">
-              </div>
-              <div className="card-back">
-                <img src={spaghetti} />
-              </div>
-            </div>
-          </div>
-
-          <div className="card apple">
-            <div className="card-inner">
-              <div className="card-front">
-              </div>
-              <div className="card-back">
-                <img src={apple} />
-              </div>
-            </div>
-          </div>
-
-          <div className="card juice">
-            <div className="card-inner">
-              <div className="card-front">
-              </div>
-              <div className="card-back">
-                <img src={juice} />
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <div className="row">
-
-          <div className="card chicken">
-            <div className="card-inner">
-              <div className="card-front">
-              </div>
-              <div className="card-back">
-                <img src={chicken} />
-              </div>
-            </div>
-          </div>
-
-          <div className="card juice">
-            <div className="card-inner">
-              <div className="card-front">
-              </div>
-              <div className="card-back">
-                <img src={juice} />
-              </div>
-            </div>
-          </div>
-
-          <div className="card spaghetti">
-            <div className="card-inner">
-              <div className="card-front">
-              </div>
-              <div className="card-back">
-                <img src={spaghetti} />
-              </div>
-            </div>
-          </div>
-
-          <div className="card pizza">
-            <div className="card-inner">
-              <div className="card-front">
-              </div>
-              <div className="card-back">
-                <img src={pizza} />
-              </div>
-            </div>
-          </div>
-
-        </div>
+        <div className="row">{this.state.foods1.map(food => <Card food={food} handleClick={this.handleClick} />)}</div>
+        <div className="row">{this.state.foods2.map(food => <Card food={food} handleClick={this.handleClick} />)}</div>
+        <div className="row">{this.state.foods3.map(food => <Card food={food} handleClick={this.handleClick} />)}</div>
+        <div className="row">{this.state.foods4.map(food => <Card food={food} handleClick={this.handleClick} />)}</div>
 
       </div>
 
