@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import pizza from './pizza.jpg'
+import pizza from './pizza.png'
 import apple from './apple.png'
 import coffee from './coffee.png'
 import chicken from './chicken.png'
@@ -12,39 +12,50 @@ import cookies from './cookies.png'
 class App extends React.Component {
 
   state = {
-    prevCell: ''
+    prevCard: ''
+  }
+
+  componentDidMount() {
+    const cards = document.getElementsByClassName('card')
+    for (let i = 0; i < cards.length; i++) {
+      cards[i].addEventListener('click', this.handleClick)
+    }
   }
 
   handleClick = (e) => {
-    if (e.target.classList.contains('cell') && e.target.classList.contains('checking') === false && e.target.classList.contains('turned') === false) {
-      e.target.classList.add('checking')
-      const symbol = e.target.classList[1]
-      if (this.state.prevCell === '') {
-        this.setState(() => ({prevCell: symbol}))
+    const parentCard = e.currentTarget
+    if (parentCard.classList.contains('checking') === false && parentCard.classList.contains('turned') === false) {
+      parentCard.classList.add('checking')
+      const symbol = parentCard.classList[1]
+      if (this.state.prevCard === '') {
+        this.setState(() => ({prevCard: symbol}))
       } else {
-        if (symbol === this.state.prevCell) {
+        if (symbol === this.state.prevCard) {
           console.log('same')
-          const checkedCells = document.getElementsByClassName('checking')
-          for (let i = 1; i >= 0; i--) {
-            checkedCells[i].classList.add('turned')
-            checkedCells[i].classList.remove('checking')
-          }
-          if (document.getElementsByClassName('turned').length === 16) {
-            alert('game over')
-          }
+          const checkedCards = document.getElementsByClassName('checking')
+          setTimeout(() => {
+            for (let i = 1; i >= 0; i--) {
+              checkedCards[i].classList.add('turned')
+              checkedCards[i].classList.remove('checking')
+            }
+            if (document.getElementsByClassName('turned').length === 16) {
+              alert('game over')
+            }
+          }, 500);
+
         } else {
           console.log('different')
-          const checkedCells = document.getElementsByClassName('checking')
+          const checkedCards = document.getElementsByClassName('checking')
           setTimeout(() => {
 
             for (let i = 1; i >= 0; i--) {
-              checkedCells[i].classList.remove('checking')
+              checkedCards[i].classList.remove('checking')
             }
 
-          }, 1000);
+          }, 500);
 
         }
-        this.setState(() => ({prevCell: ''}))
+        this.setState(() => ({prevCard: ''}))
       }
     }
   }
@@ -53,13 +64,183 @@ class App extends React.Component {
 
     return (
 
-      <div className="grid-wrapper" onClick={this.handleClick}>
+      <div className="grid-wrapper">
 
-        <div className="row"><div className="cell apple"><img src={apple} /></div><div className="cell cookies"><img src={cookies} /></div><div className="cell pizza"><img src={pizza} /></div><div className="cell coffee"><img src={coffee} /></div></div>
-        <div className="row"><div className="cell cookies"><img src={cookies} /></div><div className="cell cheese"><img src={cheese} /></div><div className="cell chicken"><img src={chicken} /></div><div className="cell cheese"><img src={cheese} /></div></div>
-        <div className="row"><div className="cell coffee"><img src={coffee} /></div><div className="cell spaghetti"><img src={spaghetti} /></div><div className="cell apple"><img src={apple} /></div><div className="cell orange-juice"><img src={juice} /></div></div>
-        <div className="row"><div className="cell chicken"><img src={chicken} /></div><div className="cell orange-juice"><img src={juice} /></div><div className="cell spaghetti"><img src={spaghetti} /></div><div className="cell pizza"><img src={pizza} /></div></div>
+        <div className="row">
 
+          <div className="card apple">
+            <div className="card-inner">
+              <div className="card-front">
+              </div>
+              <div className="card-back">
+                <img src={apple} />
+              </div>
+            </div>
+          </div>
+
+          <div className="card cookies">
+            <div className="card-inner">
+              <div className="card-front">
+              </div>
+              <div className="card-back">
+                <img src={cookies} />
+              </div>
+            </div>
+          </div>
+
+          <div className="card pizza">
+            <div className="card-inner">
+              <div className="card-front">
+              </div>
+              <div className="card-back">
+                <img src={pizza} />
+              </div>
+            </div>
+          </div>
+
+          <div className="card coffee">
+            <div className="card-inner">
+              <div className="card-front">
+              </div>
+              <div className="card-back">
+                <img src={coffee} />
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div className="row">
+
+          <div className="card cookies">
+            <div className="card-inner">
+              <div className="card-front">
+              </div>
+              <div className="card-back">
+                <img src={cookies} />
+              </div>
+            </div>
+          </div>
+
+          <div className="card cheese">
+            <div className="card-inner">
+              <div className="card-front">
+              </div>
+              <div className="card-back">
+                <img src={cheese} />
+              </div>
+            </div>
+          </div>
+
+          <div className="card chicken">
+            <div className="card-inner">
+              <div className="card-front">
+              </div>
+              <div className="card-back">
+                <img src={chicken} />
+              </div>
+            </div>
+          </div>
+
+          <div className="card cheese">
+            <div className="card-inner">
+              <div className="card-front">
+              </div>
+              <div className="card-back">
+                <img src={cheese} />
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div className="row">
+
+          <div className="card coffee">
+            <div className="card-inner">
+              <div className="card-front">
+              </div>
+              <div className="card-back">
+                <img src={coffee} />
+              </div>
+            </div>
+          </div>
+
+          <div className="card spaghetti">
+            <div className="card-inner">
+              <div className="card-front">
+              </div>
+              <div className="card-back">
+                <img src={spaghetti} />
+              </div>
+            </div>
+          </div>
+
+          <div className="card apple">
+            <div className="card-inner">
+              <div className="card-front">
+              </div>
+              <div className="card-back">
+                <img src={apple} />
+              </div>
+            </div>
+          </div>
+
+          <div className="card juice">
+            <div className="card-inner">
+              <div className="card-front">
+              </div>
+              <div className="card-back">
+                <img src={juice} />
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div className="row">
+
+          <div className="card chicken">
+            <div className="card-inner">
+              <div className="card-front">
+              </div>
+              <div className="card-back">
+                <img src={chicken} />
+              </div>
+            </div>
+          </div>
+
+          <div className="card juice">
+            <div className="card-inner">
+              <div className="card-front">
+              </div>
+              <div className="card-back">
+                <img src={juice} />
+              </div>
+            </div>
+          </div>
+
+          <div className="card spaghetti">
+            <div className="card-inner">
+              <div className="card-front">
+              </div>
+              <div className="card-back">
+                <img src={spaghetti} />
+              </div>
+            </div>
+          </div>
+
+          <div className="card pizza">
+            <div className="card-inner">
+              <div className="card-front">
+              </div>
+              <div className="card-back">
+                <img src={pizza} />
+              </div>
+            </div>
+          </div>
+
+        </div>
 
       </div>
 

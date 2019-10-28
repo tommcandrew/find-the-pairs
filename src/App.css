@@ -4,6 +4,8 @@
   position: absolute;
   left: 33%;
   top: 20%;
+  border-radius: 6px;
+  overflow: hidden;
 }
 
 .row {
@@ -14,17 +16,54 @@
   display: flex;
 }
 
-.cell {
+.card {
   width: 7vw;
   height: 7vw;
-  background: white;
-  border: 1px solid black;
+  background: transparent;
+  cursor: pointer;
+  overflow: hidden;
+  perspective: 500px;
+  border: 0.5px solid white;
 }
 
-.checking, .turned {
-  background: blue;
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
 }
 
 img {
   width: 100%;
+  background: rgb(88, 48, 201);
+}
+
+.checking .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.card-front {
+  background: rgb(170, 54, 170);
+}
+
+.card:hover .card-front {
+  background: rgb(255, 36, 255);
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  width: 100%;
+  background: transparent;
+  background: rgb(88, 48, 201);
+}
+
+.turned .card-inner {
+  transform: rotateY(180deg);
 }
