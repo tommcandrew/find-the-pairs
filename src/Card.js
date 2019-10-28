@@ -1,12 +1,12 @@
 import React from 'react'
-import pizza from './pizza.png'
-import apple from './apple.png'
-import coffee from './coffee.png'
-import chicken from './chicken.png'
-import spaghetti from './spaghetti.png'
-import juice from './juice.png'
-import cheese from './cheese.png'
-import cookies from './cookies.png'
+import pizza from './images/pizza.png'
+import apple from './images/apple.png'
+import coffee from './images/coffee.png'
+import chicken from './images/chicken.png'
+import spaghetti from './images/spaghetti.png'
+import juice from './images/juice.png'
+import cheese from './images/cheese.png'
+import cookies from './images/cookies.png'
 
 const Card = (props) => {
 
@@ -46,7 +46,7 @@ const Card = (props) => {
                 <div className="card-front">
                 </div>
                 <div className="card-back">
-                    <img src={src} />
+                    <img src={src} alt={props.food} />
                 </div>
             </div>
         </div>

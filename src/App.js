@@ -70,10 +70,10 @@ class App extends React.Component {
 
       <div className="grid-wrapper">
 
-        <div className="row">{this.state.foods1.map(food => <Card food={food} handleClick={this.handleClick} />)}</div>
-        <div className="row">{this.state.foods2.map(food => <Card food={food} handleClick={this.handleClick} />)}</div>
-        <div className="row">{this.state.foods3.map(food => <Card food={food} handleClick={this.handleClick} />)}</div>
-        <div className="row">{this.state.foods4.map(food => <Card food={food} handleClick={this.handleClick} />)}</div>
+        <div className="row">{this.state.foods1.map((food, i) => <Card food={food} handleClick={this.handleClick} key={`row1-cell${i}`} />)}</div>
+        <div className="row">{this.state.foods2.map((food, i) => <Card food={food} handleClick={this.handleClick} key={`row2-cell${i}`} />)}</div>
+        <div className="row">{this.state.foods3.map((food, i) => <Card food={food} handleClick={this.handleClick} key={`row3-cell${i}`} />)}</div>
+        <div className="row">{this.state.foods4.map((food, i) => <Card food={food} handleClick={this.handleClick} key={`row4-cell${i}`} />)}</div>
 
       </div>
 
