@@ -11,7 +11,8 @@ class App extends React.Component {
     foods1: [],
     foods2: [],
     foods3: [],
-    foods4: []
+    foods4: [],
+    clicks: 0
   }
 
   componentDidMount() {
@@ -33,6 +34,8 @@ class App extends React.Component {
   }
 
   handleClick = (e) => {
+    this.setState((prevState) => ({clicks: prevState.clicks + 1}))
+
     const parentCard = e.currentTarget
     if (parentCard.classList.contains('checking') === false && parentCard.classList.contains('turned') === false) {
       parentCard.classList.add('checking')
@@ -71,6 +74,8 @@ class App extends React.Component {
       <div className="app-wrapper">
 
         <h1>MEMORY GAME</h1>
+
+        <span className="counter">Clicks: {this.state.clicks}</span>
 
         <div className="grid-wrapper">
 
