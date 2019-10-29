@@ -61,17 +61,16 @@ img {
 }
 
 .card-front {
-  background: rgb(170, 54, 170);
+  background: #BA01FF;
 }
 
 .card:hover .card-front {
-  background: rgb(255, 36, 255);
+  background: rgb(255, 17, 243);
 }
 
 .card-back {
   transform: rotateY(180deg);
   width: 100%;
-  background: transparent;
   background: rgb(88, 48, 201);
 }
 
