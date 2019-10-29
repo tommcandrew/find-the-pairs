@@ -90,3 +90,9 @@ class App extends React.Component {
 }
 
 export default App;
+
+//add move counter
+//add game over modal with score
+//add sound on click, match, game over and game start, hover
+//add button for toggling sound
+//
