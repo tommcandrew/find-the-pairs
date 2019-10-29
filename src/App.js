@@ -18,12 +18,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    const mixedArray = this.randomiseFoods()
-    const foods1 = mixedArray.slice(0, 4)
-    const foods2 = mixedArray.slice(4, 8)
-    const foods3 = mixedArray.slice(8, 12)
-    const foods4 = mixedArray.slice(12)
-    this.setState(() => ({foods1, foods2, foods3, foods4}))
+    this.randomiseFoods()
   }
 
   randomiseFoods = () => {
@@ -32,7 +27,11 @@ class App extends React.Component {
       const randomItem = Math.floor(Math.random() * (i + 1));
       [mixedArray[i], mixedArray[randomItem]] = [mixedArray[randomItem], mixedArray[i]];
     }
-    return mixedArray
+    const foods1 = mixedArray.slice(0, 4)
+    const foods2 = mixedArray.slice(4, 8)
+    const foods3 = mixedArray.slice(8, 12)
+    const foods4 = mixedArray.slice(12)
+    this.setState(() => ({foods1, foods2, foods3, foods4}))
   }
 
   handleClick = (e) => {
@@ -74,10 +73,7 @@ class App extends React.Component {
 
   playAgain = () => {
     this.setState(() => ({showModal: false, clicks: 0}))
-    const turnedCards = document.getElementsByClassName('turned')
-    while (turnedCards[0]) {
-      turnedCards[0].classList.remove('turned')
-    }
+    this.randomiseFoods()
   }
 
   toggleModal = () => {
