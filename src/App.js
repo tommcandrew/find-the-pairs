@@ -14,24 +14,13 @@ class App extends React.Component {
     foods3: [],
     foods4: [],
     clicks: 0,
-    showModal: false
+    showModal: false,
+    highScore: undefined
   }
 
   componentDidMount() {
     this.randomiseFoods()
-  }
-
-  randomiseFoods = () => {
-    let mixedArray = [...foods, ...foods]
-    for (let i = mixedArray.length - 1; i > 0; i--) {
-      const randomItem = Math.floor(Math.random() * (i + 1));
-      [mixedArray[i], mixedArray[randomItem]] = [mixedArray[randomItem], mixedArray[i]];
-    }
-    const foods1 = mixedArray.slice(0, 4)
-    const foods2 = mixedArray.slice(4, 8)
-    const foods3 = mixedArray.slice(8, 12)
-    const foods4 = mixedArray.slice(12)
-    this.setState(() => ({foods1, foods2, foods3, foods4}))
+    this.retrieveHighScore()
   }
 
   handleClick = (e) => {
@@ -39,7 +28,6 @@ class App extends React.Component {
       return
     }
     this.setState((prevState) => ({clicks: prevState.clicks + 1}))
-
     const parentCard = e.currentTarget
     if (parentCard.classList.contains('checking') === false && parentCard.classList.contains('turned') === false) {
       parentCard.classList.add('checking')
@@ -55,6 +43,14 @@ class App extends React.Component {
               checkedCards[i].classList.remove('checking')
             }
             if (document.getElementsByClassName('turned').length === 16) {
+              const currentScore = this.state.clicks
+              if (this.state.highScore && currentScore < this.state.highScore) {
+                localStorage.setItem('highScore', JSON.stringify(currentScore))
+                console.log('updated high score')
+              } else if (!this.state.highScore) {
+                localStorage.setItem('highScore', JSON.stringify(currentScore))
+                console.log('new high score')
+              }
               this.setState(() => ({showModal: true}))
             }
           }, 500);
@@ -78,10 +74,26 @@ class App extends React.Component {
       turnedCards[0].classList.remove('turned')
     }
     this.randomiseFoods()
+    this.retrieveHighScore()
   }
 
-  toggleModal = () => {
-    this.setState((prevState) => ({showModal: !prevState.showModal}))
+  randomiseFoods = () => {
+    let mixedArray = [...foods, ...foods]
+    for (let i = mixedArray.length - 1; i > 0; i--) {
+      const randomItem = Math.floor(Math.random() * (i + 1));
+      [mixedArray[i], mixedArray[randomItem]] = [mixedArray[randomItem], mixedArray[i]];
+    }
+    const foods1 = mixedArray.slice(0, 4)
+    const foods2 = mixedArray.slice(4, 8)
+    const foods3 = mixedArray.slice(8, 12)
+    const foods4 = mixedArray.slice(12)
+    this.setState(() => ({foods1, foods2, foods3, foods4}))
+  }
+
+  retrieveHighScore = () => {
+    if (localStorage.getItem('highScore')) {
+      this.setState(() => ({highScore: JSON.parse(localStorage.getItem('highScore'))}))
+    }
   }
 
   render() {
@@ -92,7 +104,10 @@ class App extends React.Component {
 
         <h1>MEMORY GAME</h1>
 
-        <span className="counter">Clicks: {this.state.clicks}</span>
+        <div className="stats-wrapper">
+          <span className="counter">Clicks: {this.state.clicks}</span>
+          {this.state.highScore && <span className="high-score">High Score: {this.state.highScore}</span>}
+        </div>
 
         <div className="grid-wrapper">
 
@@ -115,8 +130,6 @@ class App extends React.Component {
 
 export default App;
 
-//add sound on click, match, game over and game start, hover
-//add button for toggling sound
 //save high score in local storage
 //display high score on screen 
 //update high score
@@ -124,3 +137,5 @@ export default App;
 //save username to local storage
 //display saved usernames on main menu with high scores
 //allow user to choose saved profile
+//add sound on click, match, game over and game start, hover
+//add button for toggling sound
