@@ -9,8 +9,15 @@
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
+  flex-direction: column;
+}
+
+h1 {
+  font-family: 'Vampiro One', cursive;
+  font-size: 4rem;
+  margin-bottom: -50px;
 }
 
 .grid-wrapper {

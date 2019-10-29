@@ -70,6 +70,8 @@ class App extends React.Component {
 
       <div className="app-wrapper">
 
+        <h1>MEMORY GAME</h1>
+
         <div className="grid-wrapper">
 
           <div className="row">{this.state.foods1.map((food, i) => <Card food={food} handleClick={this.handleClick} key={`row1-cell${i}`} />)}</div>
