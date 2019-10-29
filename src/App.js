@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from './Card'
 import './App.css';
+import Modal from './Modal'
 
 const foods = ['apple', 'cookies', 'pizza', 'coffee', 'cheese', 'chicken', 'spaghetti', 'juice']
 
@@ -12,7 +13,8 @@ class App extends React.Component {
     foods2: [],
     foods3: [],
     foods4: [],
-    clicks: 0
+    clicks: 0,
+    showModal: false
   }
 
   componentDidMount() {
@@ -34,6 +36,9 @@ class App extends React.Component {
   }
 
   handleClick = (e) => {
+    if (this.state.showModal) {
+      return
+    }
     this.setState((prevState) => ({clicks: prevState.clicks + 1}))
 
     const parentCard = e.currentTarget
@@ -51,7 +56,7 @@ class App extends React.Component {
               checkedCards[i].classList.remove('checking')
             }
             if (document.getElementsByClassName('turned').length === 16) {
-              alert('game over')
+              this.setState(() => ({showModal: true}))
             }
           }, 500);
         } else {
@@ -65,6 +70,18 @@ class App extends React.Component {
         this.setState(() => ({prevCard: ''}))
       }
     }
+  }
+
+  playAgain = () => {
+    this.setState(() => ({showModal: false, clicks: 0}))
+    const turnedCards = document.getElementsByClassName('turned')
+    while (turnedCards[0]) {
+      turnedCards[0].classList.remove('turned')
+    }
+  }
+
+  toggleModal = () => {
+    this.setState((prevState) => ({showModal: !prevState.showModal}))
   }
 
   render() {
@@ -86,6 +103,10 @@ class App extends React.Component {
 
         </div>
 
+        <button onClick={this.toggleModal}>Toggle Modal</button>
+
+        {this.state.showModal && <Modal clicks={this.state.clicks} playAgain={this.playAgain} />}
+
       </div>
 
     );
@@ -96,8 +117,6 @@ class App extends React.Component {
 
 export default App;
 
-//add move counter
-//add game over modal with score
-//add sound on click, match, game over and game start, hover
+  //add game over modal with score
+  //add sound on click, match, game over and game start, hover
 //add button for toggling sound
-//

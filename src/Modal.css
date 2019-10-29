@@ -1,0 +1,95 @@
+.modal-wrapper {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fade-in 500ms ease-in;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.modal-content {
+    background: black;
+    border-radius: 8px;
+    padding: 40px;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 50%;
+    opacity: 0;
+    animation: fade-in 1000ms ease-in forwards;
+    animation-delay: 500ms;
+}
+
+.modal-para {
+    font-family: 'Press Start 2P', cursive;    
+    font-size: 1.5em;
+    color: white;
+    text-align: center;
+    line-height: 1.7;
+}
+
+.score {
+    font-family: 'Vampiro One', cursive;
+    color: white;
+    text-align: center;
+    font-size: 5rem;
+    animation: glow 1s ease-in-out alternate infinite;
+}
+
+@keyframes glow {
+    0% {
+        text-shadow: 
+        0 0 10px purple,
+        0 0 25px purple,
+        0 0 40px purple;
+    }
+
+    100% {
+        text-shadow: 
+        0 0 25px purple,
+        0 0 60px purple,
+        0 0 80px purple;
+    }
+}
+
+.modal-button {
+    background: purple;
+    border: none;
+    font-size: 1.8rem;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: color 100ms;
+    width: 40%;
+    animation: grow 500ms ease-in-out alternate infinite;
+}
+
+.modal-button:hover {
+    color: white;
+    cursor: pointer;
+}
+
+@keyframes grow {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.03);
+    }
+}
