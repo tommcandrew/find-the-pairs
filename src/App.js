@@ -73,6 +73,10 @@ class App extends React.Component {
 
   playAgain = () => {
     this.setState(() => ({showModal: false, clicks: 0}))
+    const turnedCards = document.getElementsByClassName('turned')
+    while (turnedCards[0]) {
+      turnedCards[0].classList.remove('turned')
+    }
     this.randomiseFoods()
   }
 
@@ -99,8 +103,6 @@ class App extends React.Component {
 
         </div>
 
-        <button onClick={this.toggleModal}>Toggle Modal</button>
-
         {this.state.showModal && <Modal clicks={this.state.clicks} playAgain={this.playAgain} />}
 
       </div>
@@ -113,6 +115,12 @@ class App extends React.Component {
 
 export default App;
 
-  //add game over modal with score
-  //add sound on click, match, game over and game start, hover
+//add sound on click, match, game over and game start, hover
 //add button for toggling sound
+//save high score in local storage
+//display high score on screen 
+//update high score
+//create main menu with username input
+//save username to local storage
+//display saved usernames on main menu with high scores
+//allow user to choose saved profile
