@@ -2,9 +2,18 @@ import React from 'react'
 import './styles/Modal.css'
 import UIFx from 'uifx'
 import playAgainSound from '../sounds/playagain.wav'
+import hoverSound from '../sounds/hum.wav';
 
 const selectPlayAgain = new UIFx(
     playAgainSound,
+    {
+        volume: 0.5,
+        throttleMs: 100
+    }
+)
+
+const hover = new UIFx(
+    hoverSound,
     {
         volume: 0.5,
         throttleMs: 100
@@ -16,6 +25,10 @@ const Modal = (props) => {
     const playAgain = () => {
         selectPlayAgain.play()
         props.playAgain()
+    }
+
+    const playHover = () => {
+        hover.play()
     }
 
     let score
@@ -34,9 +47,13 @@ const Modal = (props) => {
     return (
         <div className="modal-wrapper">
             <div className="modal-content">
-                <p className="modal-para">You completed the game in {props.clicks} clicks. <br />Your rating is...</p>
+                <div className="modal-main-content">
+                    <p className="modal-para">You completed the game in {props.clicks} clicks.</p>
+                    {props.newBestScore && <p className="best-para">NEW BEST SCORE!</p>}
+                    <p className="rating-para">Your rating is...</p>
+                </div>
                 <p className="score">{score}</p>
-                <button className="modal-button" onClick={playAgain}>Play Again</button>
+                <button className="modal-button" onClick={playAgain} onMouseEnter={playHover}>Play Again</button>
             </div>
 
         </div>

@@ -37,14 +37,17 @@ class App extends React.Component {
     clicks: 0,
     showModal: false,
     showMenu: true,
-    highScore: undefined,
+    bestScore: undefined,
     players: [],
-    playerName: undefined
+    playerName: undefined,
+    newBestScore: undefined
   }
 
   componentDidMount() {
-    const playersArray = JSON.parse(localStorage.getItem('players'))
-    this.setState(() => ({players: [...playersArray]}))
+    if (localStorage.getItem('players')) {
+      const playersArray = JSON.parse(localStorage.getItem('players'))
+      this.setState(() => ({players: [...playersArray]}))
+    }
     this.randomiseFoods()
   }
 
@@ -74,16 +77,18 @@ class App extends React.Component {
             }
             if (document.getElementsByClassName('turned').length === 16) {
               const currentScore = this.state.clicks
-              if (currentScore < this.state.highScore || this.state.highScore === '') {
+              debugger
+              if (currentScore < this.state.bestScore || this.state.bestScore === undefined) {
                 const playersArray = JSON.parse(localStorage.getItem('players'))
                 for (let player of playersArray) {
                   if (player.name === this.state.playerName) {
-                    player.highScore = currentScore
+                    player.bestScore = currentScore
                   }
                 }
                 localStorage.setItem('players', JSON.stringify(playersArray))
-                this.setState(() => ({highScore: currentScore}))
-                console.log('updated high score')
+                this.setState(() => ({bestScore: currentScore, newBestScore: true}))
+
+                console.log('updated best score')
               }
               setTimeout(() => {
                 this.setState(() => ({showModal: true}))
@@ -138,10 +143,10 @@ class App extends React.Component {
   saveNewPlayer = (e) => {
     e.preventDefault()
     const playerName = e.target.elements.nameInput.value
-    this.setState(() => ({playerName, showMenu: false, highScore: ''}))
+    this.setState(() => ({playerName, showMenu: false, bestScore: undefined}))
     const newPlayerObj = {
       name: playerName,
-      highScore: ''
+      bestScore: undefined
     }
     let playersArray
     if (localStorage.getItem('players') && localStorage.getItem('players').length > 0) {
@@ -154,7 +159,7 @@ class App extends React.Component {
   }
 
   setPlayer = (playerObj) => {
-    this.setState(() => ({playerName: playerObj.name, highScore: playerObj.highScore}))
+    this.setState(() => ({playerName: playerObj.name, bestScore: playerObj.bestScore}))
   }
 
   render() {
@@ -169,7 +174,7 @@ class App extends React.Component {
 
           <div>
 
-            <Stats clicks={this.state.clicks} highScore={this.state.highScore} playerName={this.state.playerName} />
+            <Stats clicks={this.state.clicks} bestScore={this.state.bestScore} playerName={this.state.playerName} />
 
             <Grid
               foods1={this.state.foods1}
@@ -181,7 +186,7 @@ class App extends React.Component {
           </div>
         }
 
-        {this.state.showModal && <Modal clicks={this.state.clicks} playAgain={this.playAgain} />}
+        {this.state.showModal && <Modal clicks={this.state.clicks} playAgain={this.playAgain} newBestScore={this.state.newBestScore} />}
 
       </div>
 

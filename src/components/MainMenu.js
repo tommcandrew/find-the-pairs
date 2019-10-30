@@ -22,6 +22,7 @@ class MainMenu extends React.Component {
         click.play()
     }
 
+
     showForm = () => {
         this.setState(() => ({showForm: true}))
     }

@@ -7,7 +7,7 @@ const Stats = (props) => {
             <p className="player-name">Player: {props.playerName}</p>
             <div className="score-wrapper">
                 <span className="counter">Clicks: {props.clicks}</span>
-                <span className="high-score">Best Score: {props.highScore}</span>
+                <span className="high-score">Best Score: {props.bestScore}</span>
             </div>
         </div>
     )
