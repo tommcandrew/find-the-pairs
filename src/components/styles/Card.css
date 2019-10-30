@@ -18,7 +18,8 @@
   
   img {
     width: 100%;
-    background: rgb(88, 48, 201);
+    background: #070780;
+
   }
   
   .checking .card-inner {
@@ -37,13 +38,24 @@
   }
   
   .card:hover .card-front {
-    background: rgb(255, 17, 243);
+    animation: hoverGlow 700ms ease-out alternate infinite;
+  }
+
+  @keyframes hoverGlow {
+    0% {
+      background: #BA01FF;
+
+    }
+    100% {
+      background: #FF007F;
+    }
   }
   
   .card-back {
     transform: rotateY(180deg);
     width: 100%;
-    background: rgb(88, 48, 201);
+    background: #070780;
+
   }
   
   .turned .card-inner {
