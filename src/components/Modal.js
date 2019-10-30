@@ -6,7 +6,7 @@ import playAgainSound from '../sounds/playagain.wav'
 const selectPlayAgain = new UIFx(
     playAgainSound,
     {
-        volume: 1,
+        volume: 0.5,
         throttleMs: 100
     }
 )

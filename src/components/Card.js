@@ -65,12 +65,15 @@ const Card = (props) => {
     }
 
     const handleClick = (e) => {
-        playSlide()
-        props.handleClick(e)
+        if (e.target.classList.contains('image')) {
+            return
+        } else {
+            playSlide()
+            props.handleClick(e)
+        }
     }
 
     const playBeep = (e) => {
-        console.log(e.target)
         if (e.target.classList.contains('image') || e.target.classList.contains('checking') || e.target.classList.contains('turned')) {
             return
         } else if (e.target.classList.contains('card') || e.target.classList.contains('card-front')) {
