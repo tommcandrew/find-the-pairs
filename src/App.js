@@ -51,12 +51,16 @@ class App extends React.Component {
             }
             if (document.getElementsByClassName('turned').length === 16) {
               const currentScore = this.state.clicks
-              if (this.state.highScore && currentScore < this.state.highScore) {
-                localStorage.setItem('highScore', JSON.stringify(currentScore))
+              if (currentScore < this.state.highScore || this.state.highScore === '') {
+                const playersArray = JSON.parse(localStorage.getItem('players'))
+                for (let player of playersArray) {
+                  if (player.name === this.state.playerName) {
+                    player.highScore = currentScore
+                  }
+                }
+                localStorage.setItem('players', JSON.stringify(playersArray))
+                this.setState(() => ({highScore: currentScore}))
                 console.log('updated high score')
-              } else if (!this.state.highScore) {
-                localStorage.setItem('highScore', JSON.stringify(currentScore))
-                console.log('new high score')
               }
               this.setState(() => ({showModal: true}))
             }
@@ -105,9 +109,20 @@ class App extends React.Component {
 
   saveNewPlayer = (e) => {
     e.preventDefault()
-    e.persist()
     const playerName = e.target.elements.nameInput.value
-    this.setState(() => ({playerName, showMenu: false}))
+    this.setState(() => ({playerName, showMenu: false, highScore: ''}))
+    const newPlayerObj = {
+      name: playerName,
+      highScore: ''
+    }
+    let playersArray
+    if (localStorage.getItem('players') && localStorage.getItem('players').length > 0) {
+      playersArray = JSON.parse(localStorage.getItem('players'))
+    } else {
+      playersArray = []
+    }
+    playersArray.push(newPlayerObj)
+    localStorage.setItem('players', JSON.stringify(playersArray))
   }
 
   render() {
