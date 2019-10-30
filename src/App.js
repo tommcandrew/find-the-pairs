@@ -4,8 +4,18 @@ import Modal from './components/Modal'
 import Stats from './components/Stats'
 import Grid from './components/Grid'
 import MainMenu from './components/MainMenu'
+import UIFx from 'uifx'
+import levelUpSound from './sounds/levelup.mp3'
 
 const foods = ['apple', 'cookies', 'pizza', 'coffee', 'cheese', 'chicken', 'spaghetti', 'juice']
+
+const levelUp = new UIFx(
+  levelUpSound,
+  {
+    volume: 0.2,
+    throttleMs: 100
+  }
+)
 
 class App extends React.Component {
 
@@ -48,6 +58,7 @@ class App extends React.Component {
         if (symbol === this.state.prevCard) {
           const checkedCards = document.getElementsByClassName('checking')
           setTimeout(() => {
+            this.playLevelUp()
             for (let i = 1; i >= 0; i--) {
               checkedCards[i].classList.add('turned')
               checkedCards[i].classList.remove('checking')
@@ -88,6 +99,10 @@ class App extends React.Component {
       turnedCards[0].classList.remove('turned')
     }
     this.randomiseFoods()
+  }
+
+  playLevelUp = () => {
+    levelUp.play()
   }
 
   randomiseFoods = () => {
