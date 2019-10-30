@@ -15,7 +15,7 @@ const selectPlayAgain = new UIFx(
 const hover = new UIFx(
     hoverSound,
     {
-        volume: 0.5,
+        volume: 0.3,
         throttleMs: 100
     }
 )

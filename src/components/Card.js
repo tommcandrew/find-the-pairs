@@ -20,13 +20,13 @@ const slide = new UIFx(
     }
 )
 
-const beep = new UIFx(
-    beepSound,
-    {
-        volume: 0.5,
-        throttleMs: 100
-    }
-)
+// const beep = new UIFx(
+//     beepSound,
+//     {
+//         volume: 0.16,
+//         throttleMs: 100
+//     }
+// )
 
 const Card = (props) => {
 
@@ -77,18 +77,18 @@ const Card = (props) => {
         }
     }
 
-    const playBeep = (e) => {
-        if (e.target.classList.contains('image') || e.target.classList.contains('checking') || e.target.classList.contains('turned')) {
-            return
-        } else if (e.target.classList.contains('card') || e.target.classList.contains('card-front')) {
-            if (!props.muted) {
-                beep.play()
-            }
-        }
-    }
+    // const playBeep = (e) => {
+    //     if (e.target.classList.contains('image') || e.target.classList.contains('checking') || e.target.classList.contains('turned')) {
+    //         return
+    //     } else if (e.target.classList.contains('card') || e.target.classList.contains('card-front')) {
+    //         if (!props.muted) {
+    //             beep.play()
+    //         }
+    //     }
+    // }
 
     return (
-        <div className={`card ${props.food}`} onClick={handleClick} onMouseOver={playBeep}>
+        <div className={`card ${props.food}`} onClick={handleClick}>
             <div className="card-inner">
                 <div className="card-front">
                 </div>

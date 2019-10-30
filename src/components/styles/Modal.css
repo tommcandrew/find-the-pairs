@@ -33,6 +33,9 @@
     opacity: 0;
     animation: fade-in 1000ms ease-in forwards;
     animation-delay: 500ms;
+    border: 5px solid green;
+    box-shadow: 0 0 10px green,
+                0 0 20px green;
 }
 
 .modal-main-content {
@@ -82,6 +85,8 @@
     transition: color 100ms;
     width: 40%;
     animation: grow 500ms ease-in-out alternate infinite;
+    box-shadow: 0px 3px 3px rgba(128,0,128, 0.5),
+    inset 1.5px 3px 0px rgba(255,255,255,0.4);
 }
 
 .modal-button:hover {

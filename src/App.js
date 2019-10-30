@@ -200,7 +200,6 @@ class App extends React.Component {
         }
 
         {this.state.showModal && <Modal muted={this.state.muted} clicks={this.state.clicks} playAgain={this.playAgain} newBestScore={this.state.newBestScore} />}
-
       </div>
 
     );
