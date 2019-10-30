@@ -8,16 +8,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    
 }
 
 .menu-content {
     background: black;
     width: 60%;
-    height: 70vh;
+    min-height: 70vh;
     border-radius: 6px;
     color: white;
     position: relative;
+    padding: 30px;
 }
 
 .new-player {

@@ -4,12 +4,16 @@ import './styles/Modal.css'
 const Modal = (props) => {
 
     let score
-    if (props.clicks < 30) {
-        score = 'EXCELLENT'
+    if (props.clicks < 25) {
+        score = 'EXCELLENT!'
+    } else if (props.clicks >= 25 && props.clicks < 30) {
+        score = 'VERY GOOD'
     } else if (props.clicks >= 30 && props.clicks < 35) {
-        score = 'GOOD'
-    } else if (props.clicks > 35) {
         score = 'OK'
+    } else if (props.clicks >= 35 && props.clicks < 40) {
+        score = 'POOR'
+    } else if (props.clicks >= 40) {
+        score = 'RUBBISH!'
     }
 
     return (
