@@ -1,9 +1,9 @@
 import React from 'react';
-import Card from './components/Card'
 import './App.css';
 import Modal from './components/Modal'
 import Stats from './components/Stats'
 import Grid from './components/Grid'
+import Header from './components/Header'
 
 const foods = ['apple', 'cookies', 'pizza', 'coffee', 'cheese', 'chicken', 'spaghetti', 'juice']
 
@@ -104,7 +104,7 @@ class App extends React.Component {
 
       <div className="app-wrapper">
 
-        <h1>MEMORY GAME</h1>
+        <Header />
 
         <Stats clicks={this.state.clicks} highScore={this.state.highScore} />
 
