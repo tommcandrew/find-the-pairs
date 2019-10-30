@@ -1,7 +1,9 @@
 import React from 'react';
-import Card from './Card'
+import Card from './components/Card'
 import './App.css';
-import Modal from './Modal'
+import Modal from './components/Modal'
+import Stats from './components/Stats'
+import Grid from './components/Grid'
 
 const foods = ['apple', 'cookies', 'pizza', 'coffee', 'cheese', 'chicken', 'spaghetti', 'juice']
 
@@ -104,19 +106,15 @@ class App extends React.Component {
 
         <h1>MEMORY GAME</h1>
 
-        <div className="stats-wrapper">
-          <span className="counter">Clicks: {this.state.clicks}</span>
-          {this.state.highScore && <span className="high-score">High Score: {this.state.highScore}</span>}
-        </div>
+        <Stats clicks={this.state.clicks} highScore={this.state.highScore} />
 
-        <div className="grid-wrapper">
-
-          <div className="row">{this.state.foods1.map((food, i) => <Card food={food} handleClick={this.handleClick} key={`row1-cell${i}`} />)}</div>
-          <div className="row">{this.state.foods2.map((food, i) => <Card food={food} handleClick={this.handleClick} key={`row2-cell${i}`} />)}</div>
-          <div className="row">{this.state.foods3.map((food, i) => <Card food={food} handleClick={this.handleClick} key={`row3-cell${i}`} />)}</div>
-          <div className="row">{this.state.foods4.map((food, i) => <Card food={food} handleClick={this.handleClick} key={`row4-cell${i}`} />)}</div>
-
-        </div>
+        <Grid
+          foods1={this.state.foods1}
+          foods2={this.state.foods2}
+          foods3={this.state.foods3}
+          foods4={this.state.foods4}
+          handleClick={this.handleClick}
+        />
 
         {this.state.showModal && <Modal clicks={this.state.clicks} playAgain={this.playAgain} />}
 
@@ -130,9 +128,6 @@ class App extends React.Component {
 
 export default App;
 
-//save high score in local storage
-//display high score on screen 
-//update high score
 //create main menu with username input
 //save username to local storage
 //display saved usernames on main menu with high scores

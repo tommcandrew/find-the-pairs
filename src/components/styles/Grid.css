@@ -1,0 +1,13 @@
+.grid-wrapper {
+    border-radius: 6px;
+    overflow: hidden;
+    width: 500px;
+  }
+  
+  .row {
+    width: auto;
+    height: auto;
+    background: transparent;
+    border: none;
+    display: flex;
+  }

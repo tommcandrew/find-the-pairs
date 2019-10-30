@@ -1,12 +1,13 @@
 import React from 'react'
-import pizza from './images/pizza.png'
-import apple from './images/apple.png'
-import coffee from './images/coffee.png'
-import chicken from './images/chicken.png'
-import spaghetti from './images/spaghetti.png'
-import juice from './images/juice.png'
-import cheese from './images/cheese.png'
-import cookies from './images/cookies.png'
+import pizza from '../images/pizza.png'
+import apple from '../images/apple.png'
+import coffee from '../images/coffee.png'
+import chicken from '../images/chicken.png'
+import spaghetti from '../images/spaghetti.png'
+import juice from '../images/juice.png'
+import cheese from '../images/cheese.png'
+import cookies from '../images/cookies.png'
+import './styles/Card.css'
 
 const Card = (props) => {
 
