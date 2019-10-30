@@ -1,6 +1,7 @@
 import React from 'react'
 import UIFx from 'uifx';
 import slideSound from '../sounds/slide.wav';
+import beepSound from '../sounds/beep.wav';
 import pizza from '../images/pizza.png'
 import apple from '../images/apple.png'
 import coffee from '../images/coffee.png'
@@ -15,6 +16,14 @@ const slide = new UIFx(
     slideSound,
     {
         volume: 0.16,
+        throttleMs: 100
+    }
+)
+
+const beep = new UIFx(
+    beepSound,
+    {
+        volume: 0.5,
         throttleMs: 100
     }
 )
@@ -60,13 +69,22 @@ const Card = (props) => {
         props.handleClick(e)
     }
 
+    const playBeep = (e) => {
+        console.log(e.target)
+        if (e.target.classList.contains('image') || e.target.classList.contains('checking') || e.target.classList.contains('turned')) {
+            return
+        } else if (e.target.classList.contains('card') || e.target.classList.contains('card-front')) {
+            beep.play()
+        }
+    }
+
     return (
-        <div className={`card ${props.food}`} onClick={handleClick}>
+        <div className={`card ${props.food}`} onClick={handleClick} onMouseOver={playBeep}>
             <div className="card-inner">
                 <div className="card-front">
                 </div>
                 <div className="card-back">
-                    <img src={src} alt={props.food} />
+                    <img className="image" src={src} alt={props.food} />
                 </div>
             </div>
         </div>

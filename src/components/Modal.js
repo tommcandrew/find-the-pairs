@@ -34,7 +34,7 @@ const Modal = (props) => {
     return (
         <div className="modal-wrapper">
             <div className="modal-content">
-                <p className="modal-para">You completed the game in {props.clicks} clicks. <br />Your score is...</p>
+                <p className="modal-para">You completed the game in {props.clicks} clicks. <br />Your rating is...</p>
                 <p className="score">{score}</p>
                 <button className="modal-button" onClick={playAgain}>Play Again</button>
             </div>
