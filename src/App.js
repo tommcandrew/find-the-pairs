@@ -6,7 +6,7 @@ import Grid from './components/Grid'
 import MainMenu from './components/MainMenu'
 import UIFx from 'uifx'
 import levelUpSound from './sounds/levelup.mp3'
-import gameOverSound from './sounds/victory.wav'
+import gameOverSound from './sounds/gameover.wav'
 
 const foods = ['apple', 'cookies', 'pizza', 'coffee', 'cheese', 'chicken', 'spaghetti', 'juice']
 
