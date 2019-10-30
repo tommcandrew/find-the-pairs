@@ -23,7 +23,7 @@ class MainMenu extends React.Component {
                             <p className="choose-para">Choose player:</p>
                             <p className="new-player" onClick={this.showForm}>NEW PLAYER</p>
                             <ul className="user-list" onClick={this.props.handleChoose}>
-                                {this.props.players.map((player, i) => <li key={i}>{player.name}</li>)}
+                                {this.props.players.map((player, i) => <li key={i} onClick={() => {this.props.setPlayer(player)}}>{player.name}</li>)}
                             </ul>
                         </div>
                     }

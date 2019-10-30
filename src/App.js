@@ -19,7 +19,8 @@ class App extends React.Component {
     showModal: false,
     showMenu: true,
     highScore: undefined,
-    players: []
+    players: [],
+    playerName: undefined
   }
 
   componentDidMount() {
@@ -120,13 +121,17 @@ class App extends React.Component {
     localStorage.setItem('players', JSON.stringify(playersArray))
   }
 
+  setPlayer = (playerObj) => {
+    this.setState(() => ({playerName: playerObj.name, highScore: playerObj.highScore}))
+  }
+
   render() {
 
     return (
 
       <div className="app-wrapper">
 
-        {this.state.showMenu && <MainMenu handleChoose={this.handleChoose} saveNewPlayer={this.saveNewPlayer} players={this.state.players} />}
+        {this.state.showMenu && <MainMenu handleChoose={this.handleChoose} saveNewPlayer={this.saveNewPlayer} setPlayer={this.setPlayer} players={this.state.players} />}
 
         {!this.state.showMenu &&
 
