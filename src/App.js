@@ -4,6 +4,7 @@ import Modal from './components/Modal'
 import Stats from './components/Stats'
 import Grid from './components/Grid'
 import MainMenu from './components/MainMenu'
+import SoundToggle from './components/SoundToggle'
 import UIFx from 'uifx'
 import levelUpSound from './sounds/levelup.mp3'
 import gameOverSound from './sounds/gameover.wav'
@@ -40,7 +41,8 @@ class App extends React.Component {
     bestScore: undefined,
     players: [],
     playerName: undefined,
-    newBestScore: undefined
+    newBestScore: undefined,
+    muted: false
   }
 
   componentDidMount() {
@@ -120,11 +122,15 @@ class App extends React.Component {
   }
 
   playLevelUp = () => {
-    levelUp.play()
+    if (!this.state.muted) {
+      levelUp.play()
+    }
   }
 
   playGameOver = () => {
-    gameOver.play()
+    if (!this.state.muted) {
+      gameOver.play()
+    }
   }
 
   randomiseFoods = () => {
@@ -162,13 +168,19 @@ class App extends React.Component {
     this.setState(() => ({playerName: playerObj.name, bestScore: playerObj.bestScore}))
   }
 
+  toggleSound = () => {
+    this.setState((prevState) => ({muted: !prevState.muted}))
+  }
+
   render() {
 
     return (
 
       <div className="app-wrapper">
 
-        {this.state.showMenu && <MainMenu handleChoose={this.handleChoose} saveNewPlayer={this.saveNewPlayer} setPlayer={this.setPlayer} players={this.state.players} />}
+        <SoundToggle muted={this.state.muted} toggleSound={this.toggleSound} />
+
+        {this.state.showMenu && <MainMenu muted={this.state.muted} handleChoose={this.handleChoose} saveNewPlayer={this.saveNewPlayer} setPlayer={this.setPlayer} players={this.state.players} />}
 
         {!this.state.showMenu &&
 
@@ -182,11 +194,12 @@ class App extends React.Component {
               foods3={this.state.foods3}
               foods4={this.state.foods4}
               handleClick={this.handleClick}
+              muted={this.state.muted}
             />
           </div>
         }
 
-        {this.state.showModal && <Modal clicks={this.state.clicks} playAgain={this.playAgain} newBestScore={this.state.newBestScore} />}
+        {this.state.showModal && <Modal muted={this.state.muted} clicks={this.state.clicks} playAgain={this.playAgain} newBestScore={this.state.newBestScore} />}
 
       </div>
 
@@ -198,6 +211,4 @@ class App extends React.Component {
 
 export default App;
 
-
-//add sound on click, match, game over and game start, hover
 //add button for toggling sound

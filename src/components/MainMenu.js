@@ -19,7 +19,9 @@ class MainMenu extends React.Component {
     }
 
     playClick = () => {
-        click.play()
+        if (!this.props.muted) {
+            click.play()
+        }
     }
 
 

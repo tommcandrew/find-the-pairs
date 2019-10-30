@@ -61,14 +61,18 @@ const Card = (props) => {
     }
 
     const playSlide = () => {
-        slide.play()
+        if (!props.muted) {
+            slide.play()
+        }
     }
 
     const handleClick = (e) => {
         if (e.target.classList.contains('image')) {
             return
         } else {
-            playSlide()
+            if (!props.muted) {
+                playSlide()
+            }
             props.handleClick(e)
         }
     }
@@ -77,7 +81,9 @@ const Card = (props) => {
         if (e.target.classList.contains('image') || e.target.classList.contains('checking') || e.target.classList.contains('turned')) {
             return
         } else if (e.target.classList.contains('card') || e.target.classList.contains('card-front')) {
-            beep.play()
+            if (!props.muted) {
+                beep.play()
+            }
         }
     }
 

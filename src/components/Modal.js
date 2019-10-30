@@ -23,12 +23,16 @@ const hover = new UIFx(
 const Modal = (props) => {
 
     const playAgain = () => {
-        selectPlayAgain.play()
+        if (!props.muted) {
+            selectPlayAgain.play()
+        }
         props.playAgain()
     }
 
     const playHover = () => {
-        hover.play()
+        if (!props.muted) {
+            hover.play()
+        }
     }
 
     let score

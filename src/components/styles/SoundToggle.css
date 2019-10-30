@@ -1,0 +1,16 @@
+.fas {
+    font-size: 4.5rem;
+    color: silver;
+    cursor: pointer;
+    transition: color 50ms ease-in;
+}
+
+.fas:hover {
+    color: white;
+}
+
+.sound-toggle-wrapper {
+    position: absolute;
+    left: 40px;
+    top: 40px;
+}
