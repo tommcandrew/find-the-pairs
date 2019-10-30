@@ -3,7 +3,7 @@ import './App.css';
 import Modal from './components/Modal'
 import Stats from './components/Stats'
 import Grid from './components/Grid'
-import Header from './components/Header'
+import MainMenu from './components/MainMenu'
 
 const foods = ['apple', 'cookies', 'pizza', 'coffee', 'cheese', 'chicken', 'spaghetti', 'juice']
 
@@ -17,12 +17,17 @@ class App extends React.Component {
     foods4: [],
     clicks: 0,
     showModal: false,
+    showMenu: true,
     highScore: undefined
   }
 
   componentDidMount() {
     this.randomiseFoods()
     this.retrieveHighScore()
+  }
+
+  handleChoose = () => {
+    this.setState(() => ({showMenu: false}))
   }
 
   handleClick = (e) => {
@@ -104,17 +109,23 @@ class App extends React.Component {
 
       <div className="app-wrapper">
 
-        <Header />
+        {this.state.showMenu && <MainMenu handleChoose={this.handleChoose} />}
 
-        <Stats clicks={this.state.clicks} highScore={this.state.highScore} />
+        {!this.state.showMenu &&
 
-        <Grid
-          foods1={this.state.foods1}
-          foods2={this.state.foods2}
-          foods3={this.state.foods3}
-          foods4={this.state.foods4}
-          handleClick={this.handleClick}
-        />
+          <div>
+
+            <Stats clicks={this.state.clicks} highScore={this.state.highScore} />
+
+            <Grid
+              foods1={this.state.foods1}
+              foods2={this.state.foods2}
+              foods3={this.state.foods3}
+              foods4={this.state.foods4}
+              handleClick={this.handleClick}
+            />
+          </div>
+        }
 
         {this.state.showModal && <Modal clicks={this.state.clicks} playAgain={this.playAgain} />}
 

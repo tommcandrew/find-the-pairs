@@ -1,0 +1,44 @@
+.menu-wrapper {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: purple;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.menu-content {
+    background: black;
+    width: 60%;
+    height: 70vh;
+    border-radius: 6px;
+    color: white;
+}
+
+.user-list {
+    list-style: none;
+    font-size: 3rem;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.user-list li {
+    cursor: pointer;
+}
+
+.user-list li:hover {
+    color: purple;
+}
+
+.choose-para {
+    font-size: 3rem;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    margin-top: 6%;
+
+}
