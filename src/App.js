@@ -6,11 +6,20 @@ import Grid from './components/Grid'
 import MainMenu from './components/MainMenu'
 import UIFx from 'uifx'
 import levelUpSound from './sounds/levelup.mp3'
+import gameOverSound from './sounds/victory.wav'
 
 const foods = ['apple', 'cookies', 'pizza', 'coffee', 'cheese', 'chicken', 'spaghetti', 'juice']
 
 const levelUp = new UIFx(
   levelUpSound,
+  {
+    volume: 0.5,
+    throttleMs: 100
+  }
+)
+
+const gameOver = new UIFx(
+  gameOverSound,
   {
     volume: 0.2,
     throttleMs: 100
@@ -76,7 +85,11 @@ class App extends React.Component {
                 this.setState(() => ({highScore: currentScore}))
                 console.log('updated high score')
               }
-              this.setState(() => ({showModal: true}))
+              setTimeout(() => {
+                this.setState(() => ({showModal: true}))
+                this.playGameOver()
+              }, 1000);
+
             }
           }, 500);
         } else {
@@ -103,6 +116,10 @@ class App extends React.Component {
 
   playLevelUp = () => {
     levelUp.play()
+  }
+
+  playGameOver = () => {
+    gameOver.play()
   }
 
   randomiseFoods = () => {
