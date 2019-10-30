@@ -103,19 +103,26 @@ class App extends React.Component {
     }
   }
 
+  saveNewPlayer = (e) => {
+    e.preventDefault()
+    e.persist()
+    const playerName = e.target.elements.nameInput.value
+    this.setState(() => ({playerName, showMenu: false}))
+  }
+
   render() {
 
     return (
 
       <div className="app-wrapper">
 
-        {this.state.showMenu && <MainMenu handleChoose={this.handleChoose} />}
+        {this.state.showMenu && <MainMenu handleChoose={this.handleChoose} saveNewPlayer={this.saveNewPlayer} />}
 
         {!this.state.showMenu &&
 
           <div>
 
-            <Stats clicks={this.state.clicks} highScore={this.state.highScore} />
+            <Stats clicks={this.state.clicks} highScore={this.state.highScore} playerName={this.state.playerName} />
 
             <Grid
               foods1={this.state.foods1}

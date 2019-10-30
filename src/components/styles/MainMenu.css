@@ -76,8 +76,6 @@
 }
 
 .play-button {
-    /* font-family: 'Vampiro One', cursive; */
-    /* color: white; */
     font-size: 4rem;
     padding: 10px;
     border-radius: 6px;
@@ -91,6 +89,9 @@
     0 0 40px purple;
     transition: text-shadow 400ms;
     font-family: 'Quicksand', sans-serif;    
+    background: transparent;
+    border: none;
+    color: white;
 }
 
 .play-button:hover {

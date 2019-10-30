@@ -30,11 +30,11 @@ class MainMenu extends React.Component {
                         </div>
                     }
                     {this.state.showForm &&
-                        <div className="form-wrapper">
+                        <form className="form-wrapper" onSubmit={this.props.saveNewPlayer}>
                             <p className="form-label">Enter your name:</p>
-                            <input type="text" className="form-input" />
-                            <p className="play-button">LET'S PLAY!</p>
-                        </div>
+                            <input type="text" className="form-input" name="nameInput" />
+                            <button type="submit" className="play-button">LET'S PLAY!</button>
+                        </form>
                     }
                 </div>
             </div>
