@@ -18,12 +18,14 @@ class App extends React.Component {
     clicks: 0,
     showModal: false,
     showMenu: true,
-    highScore: undefined
+    highScore: undefined,
+    players: []
   }
 
   componentDidMount() {
+    const playersArray = JSON.parse(localStorage.getItem('players'))
+    this.setState(() => ({players: [...playersArray]}))
     this.randomiseFoods()
-    this.retrieveHighScore()
   }
 
   handleChoose = () => {
@@ -85,7 +87,6 @@ class App extends React.Component {
       turnedCards[0].classList.remove('turned')
     }
     this.randomiseFoods()
-    this.retrieveHighScore()
   }
 
   randomiseFoods = () => {
@@ -99,12 +100,6 @@ class App extends React.Component {
     const foods3 = mixedArray.slice(8, 12)
     const foods4 = mixedArray.slice(12)
     this.setState(() => ({foods1, foods2, foods3, foods4}))
-  }
-
-  retrieveHighScore = () => {
-    if (localStorage.getItem('highScore')) {
-      this.setState(() => ({highScore: JSON.parse(localStorage.getItem('highScore'))}))
-    }
   }
 
   saveNewPlayer = (e) => {
@@ -131,7 +126,7 @@ class App extends React.Component {
 
       <div className="app-wrapper">
 
-        {this.state.showMenu && <MainMenu handleChoose={this.handleChoose} saveNewPlayer={this.saveNewPlayer} />}
+        {this.state.showMenu && <MainMenu handleChoose={this.handleChoose} saveNewPlayer={this.saveNewPlayer} players={this.state.players} />}
 
         {!this.state.showMenu &&
 
