@@ -161,9 +161,6 @@ class App extends React.Component {
 
 export default App;
 
-//create main menu with username input
-//save username to local storage
-//display saved usernames on main menu with high scores
-//allow user to choose saved profile
+
 //add sound on click, match, game over and game start, hover
 //add button for toggling sound

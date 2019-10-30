@@ -1,11 +1,25 @@
 import React from 'react'
 import Header from './Header'
 import './styles/MainMenu.css'
+import UIFx from 'uifx';
+import clickSound from '../sounds/click.wav';
+
+const click = new UIFx(
+    clickSound,
+    {
+        volume: 0.2,
+        throttleMs: 100
+    }
+)
 
 class MainMenu extends React.Component {
 
     state = {
         showForm: false
+    }
+
+    playClick = () => {
+        click.play()
     }
 
     showForm = () => {
@@ -21,9 +35,9 @@ class MainMenu extends React.Component {
                     {!this.state.showForm &&
                         <div>
                             <p className="choose-para">Choose player:</p>
-                            <p className="new-player" onClick={this.showForm}>NEW PLAYER</p>
+                            <p className="new-player" onMouseOver={this.playClick} onClick={this.showForm}>NEW PLAYER</p>
                             <ul className="user-list" onClick={this.props.handleChoose}>
-                                {this.props.players.map((player, i) => <li key={i} onClick={() => {this.props.setPlayer(player)}}>{player.name}</li>)}
+                                {this.props.players.map((player, i) => <li onMouseOver={this.playClick} key={i} onClick={() => {this.props.setPlayer(player)}}>{player.name}</li>)}
                             </ul>
                         </div>
                     }
@@ -35,7 +49,9 @@ class MainMenu extends React.Component {
                         </form>
                     }
                 </div>
+
             </div>
+
         )
 
     }
