@@ -18,8 +18,7 @@
   
   img {
     width: 100%;
-    background: #070780;
-
+    background: indigo;
   }
   
   .checking .card-inner {
@@ -54,8 +53,7 @@
   .card-back {
     transform: rotateY(180deg);
     width: 100%;
-    background: #070780;
-
+    background: indigo;
   }
   
   .turned .card-inner {

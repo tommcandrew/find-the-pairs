@@ -37,7 +37,7 @@ const Modal = (props) => {
 
     let score
     if (props.clicks < 25) {
-        score = 'EXCELLENT!'
+        score = 'EXCELLENT'
     } else if (props.clicks >= 25 && props.clicks < 30) {
         score = 'VERY GOOD'
     } else if (props.clicks >= 30 && props.clicks < 35) {
@@ -45,7 +45,7 @@ const Modal = (props) => {
     } else if (props.clicks >= 35 && props.clicks < 40) {
         score = 'POOR'
     } else if (props.clicks >= 40) {
-        score = 'RUBBISH!'
+        score = 'RUBBISH'
     }
 
     return (

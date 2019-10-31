@@ -1,10 +1,13 @@
 h1 {
     font-family: 'Vampiro One', cursive;
     font-size: 4rem;
-    margin-bottom: -50px;
     color: white;
     text-align: center;
-    padding-top: 30px;
+    padding-top: 50px;
+    flex: 1;
+    text-shadow: 0 0 10px purple,
+                 0 0 20px purple,
+                 0 0 30px purple;
   }
   
   

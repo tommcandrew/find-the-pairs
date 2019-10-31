@@ -36,12 +36,14 @@ class MainMenu extends React.Component {
                 <div className="menu-content">
                     <Header />
                     {!this.state.showForm &&
-                        <div>
+                        <div className="players-div">
                             <p className="choose-para">Choose player:</p>
-                            <p className="new-player" onMouseOver={this.playClick} onClick={this.showForm}>NEW PLAYER</p>
-                            <ul className="user-list" onClick={this.props.handleChoose}>
-                                {this.props.players.map((player, i) => <li onMouseOver={this.playClick} key={i} onClick={() => {this.props.setPlayer(player)}}>{player.name}</li>)}
-                            </ul>
+                            <div className="player-options">
+                                <ul className="user-list" onClick={this.props.handleChoose}>
+                                    {this.props.players.map((player, i) => <li onMouseOver={this.playClick} key={i} onClick={() => {this.props.setPlayer(player)}}>{player.name}</li>)}
+                                </ul>
+                                <button className="new-player" onMouseOver={this.playClick} onClick={this.showForm}>NEW PLAYER</button>
+                            </div>
                         </div>
                     }
                     {this.state.showForm &&
